@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Auth ──────────────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String
+  name          String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+// ── Content ───────────────────────────────────────────────────────────────────
+
+model Post {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  teaser      String
+  content     String    @db.Text
+  image       String?
+  category    Category  @default(ALLGEMEIN)
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Termin {
+  id          String      @id @default(cuid())
+  title       String
+  date        DateTime
+  endDate     DateTime?
+  location    String?
+  description String?     @db.Text
+  type        TerminType  @default(LANDESVERBAND)
+  published   Boolean     @default(false)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Person {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  photo     String?
+  email     String?
+  instagram String?
+  linkedin  String?
+  order     Int      @default(0)
+  verband   Verband  @default(BEIDE)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Download {
+  id        String       @id @default(cuid())
+  title     String
+  file      String
+  type      DownloadType @default(VORLAGE)
+  order     Int          @default(0)
+  createdAt DateTime     @default(now())
+}
+
+// ── Enums ─────────────────────────────────────────────────────────────────────
+
+enum Category {
+  PRESSEMITTEILUNG
+  BESCHLUSS
+  NEWSLETTER
+  ALLGEMEIN
+}
+
+enum TerminType {
+  BUNDESVERBAND
+  LANDESVERBAND
+  BEZIRK
+}
+
+enum Verband {
+  JULIS
+  FDP
+  BEIDE
+}
+
+enum DownloadType {
+  VORLAGE
+  MERCH
+  JULIETTE
+}
