@@ -19,8 +19,16 @@ const transporter = process.env.SMTP_HOST
         process.env.SMTP_USER && process.env.SMTP_PASS
           ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
           : undefined,
+      tls: { rejectUnauthorized: false },
     })
   : null;
+
+// Verify SMTP connection at startup so misconfiguration is caught in logs
+if (transporter) {
+  transporter.verify().catch((err) =>
+    console.error("[Kontaktformular] SMTP verify failed:", err)
+  );
+}
 
 export async function POST(req: NextRequest) {
   const body = await req.json();

@@ -10,7 +10,7 @@ function formatCaption(caption?: string): string {
   return trimmed.length > 90 ? trimmed.slice(0, 90) + "\u2026" : trimmed;
 }
 
-function PostCard({ post }: { post: InstagramPost }) {
+function PostCard({ post, eager }: { post: InstagramPost; eager?: boolean }) {
   const caption = formatCaption(post.caption);
   const isVideo = post.media_type === "VIDEO";
 
@@ -43,6 +43,8 @@ function PostCard({ post }: { post: InstagramPost }) {
           fill
           sizes="(max-width: 600px) 50vw, (max-width: 900px) 33vw, 25vw"
           style={{ objectFit: "cover" }}
+          loading={eager ? "eager" : "lazy"}
+          priority={eager}
         />
         <div className="ig-card__overlay">
           {isVideo && (
@@ -163,7 +165,7 @@ export async function InstagramSection({
 
         <div className="ig-grid">
           {displayPosts.length > 0
-            ? displayPosts.map((post) => <PostCard key={post.id} post={post} />)
+            ? displayPosts.map((post, i) => <PostCard key={post.id} post={post} eager={i === 0} />)
             : [0, 1, 2, 3, 4, 5].map((i) => <PlaceholderCard key={"ig-ph-" + i} i={i} />)
           }
         </div>
@@ -183,39 +185,6 @@ export async function InstagramSection({
         )}
       </div>
 
-      <style>{`
-        .ig-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 6px;
-        }
-        @media (max-width: 900px) { .ig-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 560px) { .ig-grid { grid-template-columns: repeat(2, 1fr); } }
-        .ig-card { display: block; text-decoration: none; }
-        .ig-card__img {
-          position: relative; aspect-ratio: 1; overflow: hidden; background: #1a0010;
-        }
-        .ig-card__overlay {
-          position: absolute; inset: 0; opacity: 0; transition: opacity 0.25s;
-          background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, transparent 55%);
-          display: flex; flex-direction: column; justify-content: flex-end; padding: 0.75rem;
-        }
-        .ig-card:hover .ig-card__overlay, .ig-card:focus .ig-card__overlay { opacity: 1; }
-        .ig-card__img img { transition: transform 0.35s ease; }
-        .ig-card:hover .ig-card__img img, .ig-card:focus .ig-card__img img {
-          transform: scale(1.05);
-        }
-        .ig-card__caption {
-          color: #fff; font-size: 0.78rem; line-height: 1.4; margin: 0;
-          overflow: hidden; display: -webkit-box;
-          -webkit-line-clamp: 3; -webkit-box-orient: vertical;
-        }
-        .ig-card__type-icon {
-          position: absolute; top: 0.5rem; right: 0.5rem; color: #fff;
-          font-size: 0.85rem; background: rgba(0,0,0,0.55);
-          border-radius: 3px; padding: 1px 5px; line-height: 1.5;
-        }
-      `}</style>
     </section>
   );
 }

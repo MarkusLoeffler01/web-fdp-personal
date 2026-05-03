@@ -40,6 +40,7 @@ export function InstagramVideoCard({ src, caption, permalink }: Props) {
           loop
           playsInline
           preload="metadata"
+          suppressHydrationWarning
           style={{
             position: "absolute",
             inset: 0,

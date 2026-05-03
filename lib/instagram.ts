@@ -13,14 +13,21 @@ export async function fetchInstagramPosts(): Promise<InstagramPost[]> {
       next: { revalidate: 3600 },
     });
 
-    if (!res.ok) return [];
+    if (!res.ok) {
+      console.error(`[Instagram] API error: HTTP ${res.status} ${res.statusText}`);
+      return [];
+    }
 
     const json = await res.json();
     const parsed = InstagramResponseSchema.safeParse(json);
-    if (!parsed.success) return [];
+    if (!parsed.success) {
+      console.error("[Instagram] Schema validation failed:", parsed.error.flatten());
+      return [];
+    }
 
     return parsed.data.data;
-  } catch {
+  } catch (err) {
+    console.error("[Instagram] Fetch failed:", err);
     return [];
   }
 }
