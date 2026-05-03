@@ -59,7 +59,7 @@ export default function MitmachenPage() {
               </h2>
               <p style={{ color: "rgba(0,0,0,0.65)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
                 Die Jungen Liberalen Baden-Württemberg sind der Jugendverband der FDP.
-                Mitglied werden bis 35 Jahre, Beitrag ab 5 €/Monat.
+                Mitglied werden bis 35 Jahre
               </p>
               <ul style={{ listStyle: "none", padding: 0, marginBottom: "2rem", display: "flex", flexDirection: "column", gap: "0.5rem" }}>
                 {["Politische Bildung", "Vernetzung", "Kongresse & Events", "Demokratische Mitbestimmung"].map((b) => (
@@ -69,13 +69,13 @@ export default function MitmachenPage() {
                 ))}
               </ul>
               <a
-                href="https://julis-bw.de/mitmachen"
+                href="https://julis.de/mitglied-werden-2/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-yellow"
                 style={{ width: "100%", justifyContent: "center" }}
               >
-                Jetzt bei JuLis BW mitmachen ↗
+                Jetzt bei den Jungen Liberalen mitmachen ↗
               </a>
             </div>
 
@@ -102,13 +102,13 @@ export default function MitmachenPage() {
                 ))}
               </ul>
               <a
-                href="https://fdpbw.de/mitmachen"
+                href="https://www.fdpbw.de/mitglied-werden"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn"
                 style={{ background: "var(--magenta)", color: "var(--white)", width: "100%", justifyContent: "center" }}
               >
-                Jetzt bei FDP BW mitmachen ↗
+                Jetzt bei der FDP mitmachen ↗
               </a>
             </div>
           </div>

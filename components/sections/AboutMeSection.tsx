@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { profileHighlights, profileIntro } from "@/lib/profile-content";
+import Image from "next/image";
 
 export function AboutMeSection() {
   return (
@@ -9,7 +10,9 @@ export function AboutMeSection() {
         <Reveal className="profile-visual">
           <div className="portrait-shell">
             <div className="portrait-circle">
-              <span>DN</span>
+              <span style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "60%", height: "100%" }}>
+                <Image src="https://serves.m-loeffler.de/pics/fdp/profile2-transparent.png" alt="Markus Löffler" width={400} height={400} style={{ width: "100%", height: "100%", objectFit: "contain", margin: "0 auto" }} />
+              </span>
             </div>
             <div className="portrait-card">
               <span className="eyebrow eyebrow-magenta">Profil</span>

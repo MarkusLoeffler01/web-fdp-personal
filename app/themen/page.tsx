@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { TopicCard } from "@/components/ui/TopicCard";
+import { Reveal } from "@/components/ui/Reveal";
+import { HoverScale } from "@/components/ui/HoverScale";
 import { themes } from "@/lib/profile-content";
 
 export const metadata: Metadata = {
@@ -43,38 +45,41 @@ export default function ThemenPage() {
             gap: "1.5rem",
           }}
         >
-          {themes.map((t) => (
-            <div key={t.slug}>
-              <TopicCard
-                label={t.label}
-                href={`/themen/${t.slug}`}
-              />
-              <p
-                style={{
-                  marginTop: "0.75rem",
-                  fontSize: "0.9rem",
-                  color: "rgba(0,0,0,0.6)",
-                  lineHeight: 1.6,
-                }}
-              >
-                {t.teaser}
-              </p>
-              <Link
-                href={`/themen/${t.slug}`}
-                style={{
-                  display: "inline-block",
-                  marginTop: "0.5rem",
-                  fontWeight: 600,
-                  fontSize: "0.85rem",
-                  color: "var(--black)",
-                textDecoration: "none",
-                borderBottom: "2px solid var(--yellow)",
-                paddingBottom: "1px",
-              }}
-            >
-                Position lesen
-              </Link>
-            </div>
+          {themes.map((t, i) => (
+            <Reveal key={t.slug} direction="down" delay={i * 80}>
+              <HoverScale>
+                <TopicCard
+                  label={t.label}
+                  href={`/themen/${t.slug}`}
+                  image={t.picture}
+                />
+                <p
+                  style={{
+                    marginTop: "0.75rem",
+                    fontSize: "0.9rem",
+                    color: "rgba(0,0,0,0.6)",
+                    lineHeight: 1.6,
+                  }}
+                >
+                  {t.teaser}
+                </p>
+                <Link
+                  href={`/themen/${t.slug}`}
+                  style={{
+                    display: "inline-block",
+                    marginTop: "0.5rem",
+                    fontWeight: 600,
+                    fontSize: "0.85rem",
+                    color: "var(--black)",
+                    textDecoration: "none",
+                    borderBottom: "2px solid var(--yellow)",
+                    paddingBottom: "1px",
+                  }}
+                >
+                  Position lesen
+                </Link>
+              </HoverScale>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -33,7 +33,13 @@ export function PersonCard({
         }}
       >
         {photo ? (
-          <Image src={photo} alt={name} fill style={{ objectFit: "cover" }} />
+          <Image
+            src={photo}
+            alt={name}
+            fill
+            sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 25vw"
+            style={{ objectFit: "cover" }}
+          />
         ) : (
           <div
             style={{

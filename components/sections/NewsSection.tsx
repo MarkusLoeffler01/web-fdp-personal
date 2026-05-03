@@ -26,8 +26,8 @@ export function NewsSection({ posts }: NewsSectionProps) {
             <h2 className="section-title">Einordnungen, Updates und Positionen</h2>
           </div>
           <p className="news-intro-copy">
-            Eine persoenliche politische Seite lebt von aktuellen Gedanken und
-            nachvollziehbaren Positionen. Genau dafuer ist dieser Bereich da.
+            Eine persönliche politische Seite lebt von aktuellen Gedanken und
+            nachvollziehbaren Positionen. Genau dafür ist dieser Bereich da.
           </p>
           <Link href="/aktuelles" className="section-link">
             Alle Meldungen
@@ -52,10 +52,10 @@ export function NewsSection({ posts }: NewsSectionProps) {
         ) : (
           <Reveal className="empty-state">
             <span className="eyebrow eyebrow-dark">Noch leer</span>
-            <h3>Hier erscheinen kuenftig persoenliche Einordnungen und News.</h3>
+            <h3>Hier erscheinen künftig persönliche Einordnungen und News.</h3>
             <p>
               Sobald Beitraege veroeffentlicht sind, wird die Startseite diesen
-              Bereich automatisch fuellen.
+              Bereich automatisch füllen.
             </p>
           </Reveal>
         )}

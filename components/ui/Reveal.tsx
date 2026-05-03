@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import styles from "./reveal.module.css";
 
-type Direction = "up" | "left" | "right" | "scale";
+type Direction = "up" | "down" | "left" | "right" | "scale";
 
 interface RevealProps {
   children: ReactNode;

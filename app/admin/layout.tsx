@@ -1,5 +1,3 @@
-import { auth } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default async function AdminLayout({
@@ -7,8 +5,6 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
-  if (!session) redirect("/admin/login");
 
   return (
     <div style={{ display: "flex", minHeight: "100vh" }}>

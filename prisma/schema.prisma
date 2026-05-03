@@ -1,10 +1,10 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "./generated"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 // ── Auth ──────────────────────────────────────────────────────────────────────
@@ -95,4 +95,18 @@ enum DownloadType {
   VORLAGE
   MERCH
   JULIETTE
+}
+
+// ── Social Feed (OpenClaw) ────────────────────────────────────────────────────
+
+model SocialPost {
+  id         String   @id              // Original-ID vom Scraper (z. B. Instagram Post-ID)
+  platform   String                    // "instagram" | "linkedin"
+  text       String   @db.Text
+  imageUrl   String?
+  postUrl    String
+  date       DateTime
+  createdAt  DateTime @default(now())
+
+  @@index([date(sort: Desc)])
 }

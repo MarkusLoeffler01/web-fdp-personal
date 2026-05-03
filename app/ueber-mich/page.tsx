@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { DonateSection } from "@/components/sections/DonateSection";
 import { profileHighlights, profileIntro, roleBadges } from "@/lib/profile-content";
 
@@ -44,18 +45,8 @@ export default function UeberMichPage() {
                     opacity: 0.15,
                   }}
                 >
-                  FOTO
                 </span>
-                <div
-                  style={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    width: "6px",
-                    height: "50%",
-                    background: "var(--yellow)",
-                  }}
-                />
+                <Image src="https://serves.m-loeffler.de/pics/fdp/profile.png" alt="Markus Löffler" width={400} height={400} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
               </div>
 
               {/* Contact card */}

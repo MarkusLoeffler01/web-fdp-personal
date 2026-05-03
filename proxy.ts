@@ -2,19 +2,16 @@ import { auth } from "@/lib/auth";
 import { NextResponse } from "next/server";
 
 export default auth((req) => {
-  const isAdminRoute = req.nextUrl.pathname.startsWith("/admin");
-  const isLoginPage = req.nextUrl.pathname === "/admin/login";
-
-  if (isAdminRoute && !isLoginPage && !req.auth) {
+  // /admin/login is excluded from the matcher — it's always public
+  // All other /admin/* routes require authentication
+  if (!req.auth) {
     return NextResponse.redirect(new URL("/admin/login", req.url));
   }
 
-  // Redirect already-logged-in users away from login page
-  if (isLoginPage && req.auth) {
-    return NextResponse.redirect(new URL("/admin", req.url));
-  }
+  return NextResponse.next();
 });
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  // Match /admin and all sub-paths EXCEPT /admin/login
+  matcher: ["/admin/((?!login$).+)", "/admin"],
 };

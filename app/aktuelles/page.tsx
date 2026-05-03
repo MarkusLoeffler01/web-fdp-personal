@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { NewsCard } from "@/components/ui/NewsCard";
-import { FilterTabs } from "@/components/ui/FilterTabs";
+import SocialGrid from "@/components/SocialGrid";
+import { InstagramSection } from "@/components/sections/InstagramSection";
 import { prisma } from "@/lib/prisma";
 
 export const metadata: Metadata = {
@@ -37,6 +38,16 @@ export default async function AktuellesPage({ searchParams }: PageProps) {
     publishedAt: Date | null;
   }[] = [];
 
+  // Social-Posts aus der Datenbank laden (neueste zuerst)
+  let socialPosts: {
+    id: string;
+    platform: string;
+    text: string;
+    imageUrl: string | null;
+    postUrl: string;
+    date: Date;
+  }[] = [];
+
   try {
     posts = await prisma.post.findMany({
       where: {
@@ -54,12 +65,18 @@ export default async function AktuellesPage({ searchParams }: PageProps) {
         publishedAt: true,
       },
     });
+
+    socialPosts = await prisma.socialPost.findMany({
+      orderBy: { date: "desc" },
+      take: 20,
+    });
   } catch {
     posts = [];
   }
 
   return (
-    <div className="section">
+    <>
+      <div className="section">
       <div className="container">
         {/* Header */}
         <div style={{ marginBottom: "2.5rem" }}>
@@ -82,10 +99,6 @@ export default async function AktuellesPage({ searchParams }: PageProps) {
         </div>
 
         {/* Filter */}
-        <FilterTabs tabs={CATEGORIES} active={kat} onChange={() => {}} />
-        <style>{`
-          /* Server-rendered filter tabs use links */
-        `}</style>
         <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "2.5rem" }}>
           {CATEGORIES.map((c) => (
             <Link
@@ -132,7 +145,24 @@ export default async function AktuellesPage({ searchParams }: PageProps) {
             Keine Beiträge gefunden.
           </p>
         )}
+
+        {/* Social-Posts aus OpenClaw-Scraper */}
+        {socialPosts.length > 0 && (
+          <div style={{ marginTop: "4rem" }}>
+            <h2 className="h-section" style={{ marginBottom: "1.5rem" }}>Social Media</h2>
+            <SocialGrid
+              posts={socialPosts.map((p) => ({
+                ...p,
+                date: p.date.toISOString(),
+              }))}
+            />
+          </div>
+        )}
       </div>
     </div>
+
+    {/* Instagram Feed */}
+    <InstagramSection />
+  </>
   );
 }

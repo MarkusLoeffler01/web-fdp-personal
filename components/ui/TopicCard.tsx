@@ -12,7 +12,13 @@ export function TopicCard({ label, image, href }: TopicCardProps) {
     <Link href={href} className="topic-card">
       <div className="topic-card-media">
         {image ? (
-          <Image src={image} alt={label} fill style={{ objectFit: "cover" }} />
+          <Image
+            src={image}
+            alt={label}
+            fill
+            sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            style={{ objectFit: "cover" }}
+          />
         ) : (
           <div className="topic-card-fallback" />
         )}

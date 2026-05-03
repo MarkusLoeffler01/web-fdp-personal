@@ -1,8 +1,9 @@
 export const roleBadges = [
   "stv. Vorsitzender FDP Bad Urach",
   "Vorstand JuLis Kreisverband Reutlingen",
-  "Vorstand JuLis Bezirksverband Süd-Württemberg",
+  "Deligierter JuLis Bezirksverband Süd-Württemberg",
   "Mitglied erweiterter Landesvorstand JuLis Baden-Württemberg",
+  "Mitglied Landesvorstand JuLis Baden-Württemberg",
 ];
 
 export const heroFocusPoints = [
@@ -42,6 +43,7 @@ export const themes = [
         <li>Bei der Altersvorsorge halte ich kapitalgedeckte Elemente wie die Aktienrente für einen wichtigen Baustein, um den Generationenvertrag langfristig zu stabilisieren.</li>
       </ul>
     `,
+    picture: "https://serves.m-loeffler.de/pics/fdp/themen/bundestag1-cc0.jpg"
   },
   {
     slug: "demokratie",
@@ -58,6 +60,7 @@ export const themes = [
         <li>Der Verfassungsschutz sollte unabhängiger organisiert sein und nicht direkt unter politischer Kontrolle eines Innenministers stehen.</li>
       </ul>
     `,
+    picture: "https://serves.m-loeffler.de/pics/fdp/themen/demokratie.jpg",
   },
   {
     slug: "buergerrechte",
@@ -73,6 +76,7 @@ export const themes = [
         <li>Freiheit bedeutet für mich Verantwortung, Selbstbestimmung und die Möglichkeit, den eigenen Lebensweg selbst zu wählen.</li>
       </ul>
     `,
+    picture: "https://serves.m-loeffler.de/pics/fdp/themen/buergerrechte.jpg",
   },
   {
     slug: "wohnen-und-bauen",
@@ -89,6 +93,7 @@ export const themes = [
         <li>Politik muss wieder Bedingungen schaffen, unter denen mehr Wohnraum wirtschaftlich entstehen kann.</li>
       </ul>
     `,
+    picture: "https://serves.m-loeffler.de/pics/fdp/themen/bauen.jpg",
   },
   {
     slug: "bildung",
@@ -105,6 +110,7 @@ export const themes = [
         <li>Leistung, Verbindlichkeit und Qualität müssen wieder stärker in den Mittelpunkt rücken.</li>
       </ul>
     `,
+    picture: "https://serves.m-loeffler.de/pics/fdp/themen/bildung.jpg",
   },
   {
     slug: "verwaltung-und-effizienz",
@@ -121,6 +127,7 @@ export const themes = [
         <li>Digitalisierung und natürliche Fluktuation sollten genutzt werden, um Verwaltung schlanker und leistungsfähiger zu machen.</li>
       </ul>
     `,
+    picture: "https://serves.m-loeffler.de/pics/fdp/themen/buerokratie.jpg",
   },
 ] as const;
 
